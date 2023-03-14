@@ -28,15 +28,14 @@ app.get('/subscribers/names', (req, res) => {
 
 // GET http://localhost:3000/subscribers/:id
 app.get('/subscribers/:id', (req, res) => {
-    console.log(req.params);
     const { id } = req.params
     Subscriber.find({ _id: id })
         .then(data => {
-            console.log(data)
-            res.send(data)
+            if (data.length !== 0)
+                res.send(data)
         })
         .catch((error) => {
-            res.send({message: error.message})
+            res.status(404).send({ message: error.message })
         })
 })
 
