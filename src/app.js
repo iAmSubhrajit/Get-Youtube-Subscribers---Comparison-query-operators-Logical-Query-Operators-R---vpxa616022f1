@@ -31,8 +31,7 @@ app.get('/subscribers/:id', (req, res) => {
     const { id } = req.params
     Subscriber.find({ _id: id })
         .then(data => {
-            if (data.length !== 0)
-                res.send(data)
+            res.send(data)
         })
         .catch((error) => {
             res.status(404).send({ message: error.message })
