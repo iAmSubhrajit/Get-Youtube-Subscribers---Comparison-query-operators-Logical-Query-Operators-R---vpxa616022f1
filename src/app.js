@@ -29,9 +29,13 @@ app.get('/subscribers/names', (req, res) => {
 // GET http://localhost:3000/subscribers/:id
 app.get('/subscribers/:id', (req, res) => {
     const { id } = req.params
-    Subscriber.find({ _id: id })
+//    Subscriber.find({ _id: id })
+//        .then(data => {
+//            res.send(...data)
+//        })
+    Subscriber.findOne({ _id: id })
         .then(data => {
-            res.send(...data)
+            res.send(data)
         })
         .catch((error) => {
             res.status(400).send({ message: error.message })
